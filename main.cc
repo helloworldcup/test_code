@@ -14,7 +14,6 @@ int main(){
     int v1=5;
     uint32_t v2 = 5; 
     int v3= -1;
-    int v4 = -2;
     uint8_t k = 2;
     char d[20] = "abcdefghi";
     int v8[5]={1,2,3,4,5};
