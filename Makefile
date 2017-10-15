@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Test1.0.0
-DISTDIR = /home/zdh/src/test_code/cmake/obj/Test1.0.0
+DISTDIR = /home/zdh/src/git/test_code/obj/Test1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/zdh/Qt5.7.1/5.7/gcc_64/lib
 LIBS          = $(SUBLIBS) -L/home/zdh/Qt5.7.1/5.7/gcc_64/lib -lQt5Gui -L/usr/lib64 -lQt5Core -lpthread -lGL 
@@ -185,7 +185,6 @@ DIST          = ../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/default_pre.prf \
@@ -204,7 +203,8 @@ DIST          = ../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/lex.prf \
 		test.pro include/leveldb/slice.h \
 		util/logging.h \
-		test/mem.h main.cc \
+		test/mem.h \
+		test/union.h main.cc \
 		util/logging.cc \
 		test/mem.cc
 QMAKE_TARGET  = Test
@@ -349,7 +349,6 @@ Makefile: test.pro ../../../Qt5.7.1/5.7/gcc_64/mkspecs/linux-g++/qmake.conf ../.
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/default_pre.prf \
@@ -501,7 +500,6 @@ Makefile: test.pro ../../../Qt5.7.1/5.7/gcc_64/mkspecs/linux-g++/qmake.conf ../.
 ../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qt5.7.1/5.7/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 ../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/toolchain.prf:
 ../../../Qt5.7.1/5.7/gcc_64/mkspecs/features/default_pre.prf:
@@ -535,7 +533,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents include/leveldb/slice.h util/logging.h test/mem.h $(DISTDIR)/
+	$(COPY_FILE) --parents include/leveldb/slice.h util/logging.h test/mem.h test/union.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cc util/logging.cc test/mem.cc $(DISTDIR)/
 
 
@@ -578,7 +576,8 @@ compiler_clean:
 
 obj/main.o: main.cc util/logging.h \
 		include/leveldb/slice.h \
-		test/mem.h
+		test/mem.h \
+		test/union.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/main.o main.cc
 
 obj/logging.o: util/logging.cc util/logging.h \

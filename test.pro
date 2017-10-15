@@ -13,7 +13,8 @@ TARGET = Test
 
 HEADERS +=  include/leveldb/slice.h     \
             util/logging.h  \
-            test/mem.h
+            test/mem.h  \
+            test/union.h
 
 SOURCES +=  main.cc     \
             util/logging.cc \
