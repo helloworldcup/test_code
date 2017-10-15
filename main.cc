@@ -26,8 +26,8 @@ int main(){
     leveldb::test::to_bites((leveldb::byte_pointer)&testunion, sizeof(testunion));
     testunion.mark = 'a';
     leveldb::test::to_bites((leveldb::byte_pointer)&testunion, sizeof(testunion));
-    // testunion.score = 1.2;
-    // leveldb::test::to_bites((leveldb::byte_pointer)&testunion, sizeof(testunion));
-    // testunion.numl = 2.34;
-    // leveldb::test::to_bites((leveldb::byte_pointer)&testunion, sizeof(testunion));
+    testunion.score = 1.2;
+    leveldb::test::to_bites((leveldb::byte_pointer)&testunion, sizeof(testunion));
+    testunion.numl = 2;
+    leveldb::test::to_bites((leveldb::byte_pointer)&testunion, sizeof(testunion));
 }

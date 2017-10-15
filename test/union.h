@@ -7,7 +7,8 @@ namespace leveldb{
 
 union testunion{
     char mark;
-    //float score;
+    long numl;
+    float score;
     uint32_t value;
 };
 
