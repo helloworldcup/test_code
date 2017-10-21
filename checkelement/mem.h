@@ -7,14 +7,15 @@
 namespace leveldb{
 typedef unsigned char* byte_pointer;
 
-namespace test{
-    extern void malloc_test();
-    extern void free_test(int* p);
-    extern void free_test(void* p);
-    extern void to_bites(byte_pointer start, int len);
+class Test{
+public:
+    static void malloc_test();
+    static void free_test(int* p);
+    static void free_test(void* p);
+    static void to_bites(byte_pointer start, int len);
 
     template<typename T>
-    void to_bites(T* array, int len){
+    static void to_bites(T* array, int len){
         if(len == 1){
             to_bites((byte_pointer)array, sizeof(array));
         }else{
@@ -26,7 +27,7 @@ namespace test{
             std::cout << "=====end=====" << std::endl;
         }
     }
-}
+};
 
 }
 

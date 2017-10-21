@@ -6,9 +6,7 @@
 
 namespace leveldb{
 
-namespace test{
-
-void malloc_test(){
+void Test::malloc_test(){
     int *p;
     p = (int*)malloc(sizeof(int)*64);
     int *k;
@@ -21,19 +19,15 @@ void malloc_test(){
     free_test(k);
 }
 
-void free_test(int *p){
+void Test::free_test(int *p){
     free(p);
 }
 
-void free_test(void *p){
+void Test::free_test(void *p){
     free(p);
 }
 
-void to_bites(){
-    
-}
-
-void to_bites(byte_pointer start, int len){
+void Test::to_bites(byte_pointer start, int len){
     for (int i = len-1; i >= 0 ;i--)
     {
         for (int j = 7; j >= 0; j--)
@@ -42,7 +36,5 @@ void to_bites(byte_pointer start, int len){
     }
     printf("\n");
 }
-
-}//end of test
 
 }//end of leveldb
